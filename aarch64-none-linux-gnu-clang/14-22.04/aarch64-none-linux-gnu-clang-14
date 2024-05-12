@@ -1,0 +1,26 @@
+LINUX_ARM_TOOLCHAIN_PATH=/opt/toolchains/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu
+
+[settings]
+os=Linux
+os_build=Linux
+arch=armv8
+arch_build=x86_64
+compiler=clang
+compiler.version=14
+compiler.libcxx=libstdc++11
+build_type=Release
+
+[env]
+CFLAGS="-target aarch64-none-linux-gnu --gcc-toolchain=$LINUX_ARM_TOOLCHAIN_PATH --sysroot=$LINUX_ARM_TOOLCHAIN_PATH/aarch64-none-linux-gnu/libc"
+CXXFLAGS="-target aarch64-none-linux-gnu --gcc-toolchain=$LINUX_ARM_TOOLCHAIN_PATH --sysroot=$LINUX_ARM_TOOLCHAIN_PATH/aarch64-none-linux-gnu/libc"
+LDFLAGS="-fuse-ld=$LINUX_ARM_TOOLCHAIN_PATH/bin/aarch64-none-linux-gnu-ld"
+
+AR=llvm-ar-14
+AS=clang-14
+CC=clang-14
+CXX=clang++-14
+LD=lld-14
+OBJCOPY=llvm-objcopy-14
+RANLIB=llvm-ranlib-14
+SIZE=llvm-size-14
+STRIP=llvm-strip-14
