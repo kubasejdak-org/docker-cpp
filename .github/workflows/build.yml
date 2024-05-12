@@ -136,6 +136,7 @@ jobs:
       - build-aarch64-none-linux-gnu-clang
       - build-arm-none-eabi-gcc
     strategy:
+      fail-fast: false
       matrix:
         include:
           - IMAGE_NAME: gcc
@@ -147,7 +148,7 @@ jobs:
           - IMAGE_NAME: aarch64-none-linux-gnu-clang
             IMAGE_TAG: 14-22.04
           - IMAGE_NAME: arm-none-eabi-gcc
-            IMAGE_TAG: 14-22.04
+            IMAGE_TAG: 11-22.04
     steps:
       - name: docker push
         uses: ./.github/actions/docker-push
