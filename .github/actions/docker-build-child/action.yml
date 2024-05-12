@@ -2,8 +2,8 @@ name: Build Docker child image
 description: Build Docker child image
 
 inputs:
-  parentArtefact:
-    description: Artefact name of parent image
+  parentArtifact:
+    description: Artifact name of parent image
     required: true
   repository:
     description: Docker repository name
@@ -36,12 +36,12 @@ runs:
   steps:
     - uses: actions/download-artifact@v4
       with:
-        name: ${{ inputs.parentArtefact }}
+        name: ${{ inputs.parentArtifact }}
     - name: docker load
       shell: bash
       run: |
-        docker load -i ${{ inputs.parentArtefact }}
-        rm ${{ inputs.parentArtefact }}
+        docker load -i ${{ inputs.parentArtifact }}
+        rm ${{ inputs.parentArtifact }}
     - name: docker build
       uses: ./.github/actions/docker-build
       with:
