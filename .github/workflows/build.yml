@@ -43,7 +43,6 @@ jobs:
           workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
 
   deploy:
-    name: deploy base
     runs-on: [self-hosted, heavy-build]
     if: github.ref_name == 'main'
     needs: build-gcc
