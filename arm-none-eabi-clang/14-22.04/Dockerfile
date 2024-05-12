@@ -1,8 +1,8 @@
-FROM kubasejdak/cpp-common:22.04
+FROM kubasejdak/arm-none-eabi-gcc:11-22.04
 
 # Settings.
 ARG CLANG_VERSION=14
-ARG CONAN_TARGET_PROFILE=clang-${CLANG_VERSION}
+ARG CONAN_TARGET_PROFILE=arm-none-eabi-clang-${CLANG_VERSION}
 
 # Add conan profile.
 COPY ${CONAN_TARGET_PROFILE} ${CONAN_USER_HOME}/.conan/profiles
