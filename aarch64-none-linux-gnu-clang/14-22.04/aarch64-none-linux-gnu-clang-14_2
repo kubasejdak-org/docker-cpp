@@ -1,0 +1,25 @@
+{% import "gcc.jinja" as gcc %}
+
+[settings]
+arch=armv8
+build_type=Release
+compiler=clang
+compiler.cppstd=gnu14
+compiler.libcxx=libstdc++11
+compiler.version=14
+os=Linux
+
+[buildenv]
+CFLAGS="-target aarch64-none-linux-gnu --gcc-toolchain={{ gcc.path }} --sysroot={{ gcc.path }}/aarch64-none-linux-gnu/libc"
+CXXFLAGS="-target aarch64-none-linux-gnu --gcc-toolchain={{ gcc.path }} --sysroot={{ gcc.path }}/aarch64-none-linux-gnu/libc"
+LDFLAGS="-fuse-ld={{ gcc.path }}/bin/aarch64-none-linux-gnu-ld"
+
+AR=llvm-ar-14
+AS=clang-14
+CC=clang-14
+CXX=clang++-14
+LD=lld-14
+OBJCOPY=llvm-objcopy-14
+RANLIB=llvm-ranlib-14
+SIZE=llvm-size-14
+STRIP=llvm-strip-14
