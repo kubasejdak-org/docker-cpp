@@ -105,6 +105,27 @@ jobs:
           tag: ${{ matrix.IMAGE_TAG }}
           workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
 
+  build-arm-none-eabi-gcc:
+    name: build arm-none-eabi-gcc
+    runs-on: [self-hosted, heavy-build]
+    needs: build-cpp-common
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - IMAGE_NAME: arm-none-eabi-gcc
+            IMAGE_TAG: 11-22.04
+            PARENT_ARTIFACT: cpp-common-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: docker build
+        uses: ./.github/actions/docker-build-child
+        with:
+          parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
+          image: ${{ matrix.IMAGE_NAME }}
+          tag: ${{ matrix.IMAGE_TAG }}
+          workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
+
   deploy:
     runs-on: [self-hosted, heavy-build]
     if: github.ref_name == 'main'
@@ -113,6 +134,7 @@ jobs:
       - build-clang
       - build-aarch64-none-linux-gnu-gcc
       - build-aarch64-none-linux-gnu-clang
+      - build-arm-none-eabi-gcc
     strategy:
       matrix:
         include:
@@ -123,6 +145,8 @@ jobs:
           - IMAGE_NAME: aarch64-none-linux-gnu-gcc
             IMAGE_TAG: 11-22.04
           - IMAGE_NAME: aarch64-none-linux-gnu-clang
+            IMAGE_TAG: 14-22.04
+          - IMAGE_NAME: arm-none-eabi-gcc
             IMAGE_TAG: 14-22.04
     steps:
       - name: docker push
