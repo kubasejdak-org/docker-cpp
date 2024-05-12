@@ -15,12 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: docker build
-        uses: ./.github/actions/docker-build
+        uses: ./.github/actions/docker-build-base
         with:
           image: ${{ matrix.IMAGE_NAME }}
           tag: ${{ matrix.IMAGE_TAG }}
           workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
-          extraBuildArgs: --pull
 
   build-gcc:
     name: build gcc
@@ -32,11 +31,13 @@ jobs:
         include:
           - IMAGE_NAME: gcc
             IMAGE_TAG: 11-22.04
+            PARENT_ARTIFACT: cpp-common-22.04
     steps:
       - uses: actions/checkout@v4
       - name: docker build
-        uses: ./.github/actions/docker-build
+        uses: ./.github/actions/docker-build-child
         with:
+          parentArtefact: ${{ matrix.PARENT_ARTIFACT }}
           image: ${{ matrix.IMAGE_NAME }}
           tag: ${{ matrix.IMAGE_TAG }}
           workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
