@@ -156,6 +156,8 @@ jobs:
       - build-aarch64-none-linux-gnu-clang
       - build-arm-none-eabi-gcc
       - build-arm-none-eabi-clang
+    steps:
+      - run: echo "Success"
 
   deploy:
     runs-on: [self-hosted, heavy-build]
