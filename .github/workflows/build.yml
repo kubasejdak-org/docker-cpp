@@ -147,7 +147,7 @@ jobs:
           tag: ${{ matrix.IMAGE_TAG }}
           workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
 
-  success:
+  build-all:
     runs-on: [self-hosted, heavy-build]
     needs:
       - build-gcc
@@ -163,7 +163,7 @@ jobs:
     runs-on: [self-hosted, heavy-build]
     if: github.ref_name == 'main'
     needs:
-      - success
+      - build-all
     strategy:
       fail-fast: false
       matrix:
