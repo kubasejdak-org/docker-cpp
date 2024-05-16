@@ -147,9 +147,8 @@ jobs:
           tag: ${{ matrix.IMAGE_TAG }}
           workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
 
-  deploy:
+  success:
     runs-on: [self-hosted, heavy-build]
-    if: github.ref_name == 'main'
     needs:
       - build-gcc
       - build-clang
@@ -157,6 +156,12 @@ jobs:
       - build-aarch64-none-linux-gnu-clang
       - build-arm-none-eabi-gcc
       - build-arm-none-eabi-clang
+
+  deploy:
+    runs-on: [self-hosted, heavy-build]
+    if: github.ref_name == 'main'
+    needs:
+      - success
     strategy:
       fail-fast: false
       matrix:
