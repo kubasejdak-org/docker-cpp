@@ -22,6 +22,7 @@ RUN sudo apt install -y wget build-essential make pkg-config bison flex file bas
     \
     # Install python3 and pipx.
     sudo apt install -y python3 python3-pip python3-venv python-is-python3 && \
+    sudo -H pip config set global.break-system-packages true && \
     sudo -H pip install -U pip && \
     sudo mkdir -p -m 777 ${PIPX_HOME} && \
     sudo mkdir -p -m 777 ${PIPX_BIN_DIR} && \
