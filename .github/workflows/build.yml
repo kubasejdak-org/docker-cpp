@@ -34,6 +34,9 @@ jobs:
           - IMAGE_NAME: gcc
             IMAGE_TAG: 11-22.04
             PARENT_ARTIFACT: cpp-common-22.04
+          - IMAGE_NAME: gcc
+            IMAGE_TAG: 13-24.04
+            PARENT_ARTIFACT: cpp-common-24.04
     steps:
       - uses: actions/checkout@v4
       - name: docker build
@@ -172,6 +175,8 @@ jobs:
         include:
           - IMAGE_NAME: gcc
             IMAGE_TAG: 11-22.04
+          - IMAGE_NAME: gcc
+            IMAGE_TAG: 13-24.04
           - IMAGE_NAME: clang
             IMAGE_TAG: 14-22.04
           - IMAGE_NAME: aarch64-none-linux-gnu-gcc
