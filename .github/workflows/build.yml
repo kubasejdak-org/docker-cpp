@@ -11,7 +11,7 @@ jobs:
       matrix:
         include:
           - IMAGE_NAME: cpp-common
-            IMAGE_TAG: 22.04
+            IMAGE_TAG: [22.04, 24.04]
     steps:
       - uses: actions/checkout@v4
       - name: docker build
@@ -21,170 +21,170 @@ jobs:
           tag: ${{ matrix.IMAGE_TAG }}
           workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
 
-  build-gcc:
-    name: build gcc
-    runs-on: [self-hosted, heavy-build]
-    needs: build-cpp-common
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - IMAGE_NAME: gcc
-            IMAGE_TAG: 11-22.04
-            PARENT_ARTIFACT: cpp-common-22.04
-    steps:
-      - uses: actions/checkout@v4
-      - name: docker build
-        uses: kubasejdak-org/docker-build-child-action@main
-        with:
-          parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
-          image: ${{ matrix.IMAGE_NAME }}
-          tag: ${{ matrix.IMAGE_TAG }}
-          workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
+  # build-gcc:
+  #   name: build gcc
+  #   runs-on: [self-hosted, heavy-build]
+  #   needs: build-cpp-common
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       include:
+  #         - IMAGE_NAME: gcc
+  #           IMAGE_TAG: 11-22.04
+  #           PARENT_ARTIFACT: cpp-common-22.04
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: docker build
+  #       uses: kubasejdak-org/docker-build-child-action@main
+  #       with:
+  #         parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
+  #         image: ${{ matrix.IMAGE_NAME }}
+  #         tag: ${{ matrix.IMAGE_TAG }}
+  #         workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
 
-  build-clang:
-    name: build clang
-    runs-on: [self-hosted, heavy-build]
-    needs: build-cpp-common
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - IMAGE_NAME: clang
-            IMAGE_TAG: 14-22.04
-            PARENT_ARTIFACT: cpp-common-22.04
-    steps:
-      - uses: actions/checkout@v4
-      - name: docker build
-        uses: kubasejdak-org/docker-build-child-action@main
-        with:
-          parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
-          image: ${{ matrix.IMAGE_NAME }}
-          tag: ${{ matrix.IMAGE_TAG }}
-          workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
+  # build-clang:
+  #   name: build clang
+  #   runs-on: [self-hosted, heavy-build]
+  #   needs: build-cpp-common
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       include:
+  #         - IMAGE_NAME: clang
+  #           IMAGE_TAG: 14-22.04
+  #           PARENT_ARTIFACT: cpp-common-22.04
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: docker build
+  #       uses: kubasejdak-org/docker-build-child-action@main
+  #       with:
+  #         parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
+  #         image: ${{ matrix.IMAGE_NAME }}
+  #         tag: ${{ matrix.IMAGE_TAG }}
+  #         workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
 
-  build-aarch64-none-linux-gnu-gcc:
-    name: build aarch64-none-linux-gnu-gcc
-    runs-on: [self-hosted, heavy-build]
-    needs: build-cpp-common
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - IMAGE_NAME: aarch64-none-linux-gnu-gcc
-            IMAGE_TAG: 11-22.04
-            PARENT_ARTIFACT: cpp-common-22.04
-    steps:
-      - uses: actions/checkout@v4
-      - name: docker build
-        uses: kubasejdak-org/docker-build-child-action@main
-        with:
-          parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
-          image: ${{ matrix.IMAGE_NAME }}
-          tag: ${{ matrix.IMAGE_TAG }}
-          workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
+  # build-aarch64-none-linux-gnu-gcc:
+  #   name: build aarch64-none-linux-gnu-gcc
+  #   runs-on: [self-hosted, heavy-build]
+  #   needs: build-cpp-common
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       include:
+  #         - IMAGE_NAME: aarch64-none-linux-gnu-gcc
+  #           IMAGE_TAG: 11-22.04
+  #           PARENT_ARTIFACT: cpp-common-22.04
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: docker build
+  #       uses: kubasejdak-org/docker-build-child-action@main
+  #       with:
+  #         parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
+  #         image: ${{ matrix.IMAGE_NAME }}
+  #         tag: ${{ matrix.IMAGE_TAG }}
+  #         workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
 
-  build-aarch64-none-linux-gnu-clang:
-    name: build aarch64-none-linux-gnu-clang
-    runs-on: [self-hosted, heavy-build]
-    needs: build-aarch64-none-linux-gnu-gcc
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - IMAGE_NAME: aarch64-none-linux-gnu-clang
-            IMAGE_TAG: 14-22.04
-            PARENT_ARTIFACT: aarch64-none-linux-gnu-gcc-11-22.04
-    steps:
-      - uses: actions/checkout@v4
-      - name: docker build
-        uses: kubasejdak-org/docker-build-child-action@main
-        with:
-          parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
-          image: ${{ matrix.IMAGE_NAME }}
-          tag: ${{ matrix.IMAGE_TAG }}
-          workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
+  # build-aarch64-none-linux-gnu-clang:
+  #   name: build aarch64-none-linux-gnu-clang
+  #   runs-on: [self-hosted, heavy-build]
+  #   needs: build-aarch64-none-linux-gnu-gcc
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       include:
+  #         - IMAGE_NAME: aarch64-none-linux-gnu-clang
+  #           IMAGE_TAG: 14-22.04
+  #           PARENT_ARTIFACT: aarch64-none-linux-gnu-gcc-11-22.04
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: docker build
+  #       uses: kubasejdak-org/docker-build-child-action@main
+  #       with:
+  #         parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
+  #         image: ${{ matrix.IMAGE_NAME }}
+  #         tag: ${{ matrix.IMAGE_TAG }}
+  #         workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
 
-  build-arm-none-eabi-gcc:
-    name: build arm-none-eabi-gcc
-    runs-on: [self-hosted, heavy-build]
-    needs: build-cpp-common
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - IMAGE_NAME: arm-none-eabi-gcc
-            IMAGE_TAG: 11-22.04
-            PARENT_ARTIFACT: cpp-common-22.04
-    steps:
-      - uses: actions/checkout@v4
-      - name: docker build
-        uses: kubasejdak-org/docker-build-child-action@main
-        with:
-          parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
-          image: ${{ matrix.IMAGE_NAME }}
-          tag: ${{ matrix.IMAGE_TAG }}
-          workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
+  # build-arm-none-eabi-gcc:
+  #   name: build arm-none-eabi-gcc
+  #   runs-on: [self-hosted, heavy-build]
+  #   needs: build-cpp-common
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       include:
+  #         - IMAGE_NAME: arm-none-eabi-gcc
+  #           IMAGE_TAG: 11-22.04
+  #           PARENT_ARTIFACT: cpp-common-22.04
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: docker build
+  #       uses: kubasejdak-org/docker-build-child-action@main
+  #       with:
+  #         parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
+  #         image: ${{ matrix.IMAGE_NAME }}
+  #         tag: ${{ matrix.IMAGE_TAG }}
+  #         workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
 
-  build-arm-none-eabi-clang:
-    name: build arm-none-eabi-clang
-    runs-on: [self-hosted, heavy-build]
-    needs: build-arm-none-eabi-gcc
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - IMAGE_NAME: arm-none-eabi-clang
-            IMAGE_TAG: 14-22.04
-            PARENT_ARTIFACT: arm-none-eabi-gcc-11-22.04
-    steps:
-      - uses: actions/checkout@v4
-      - name: docker build
-        uses: kubasejdak-org/docker-build-child-action@main
-        with:
-          parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
-          image: ${{ matrix.IMAGE_NAME }}
-          tag: ${{ matrix.IMAGE_TAG }}
-          workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
+  # build-arm-none-eabi-clang:
+  #   name: build arm-none-eabi-clang
+  #   runs-on: [self-hosted, heavy-build]
+  #   needs: build-arm-none-eabi-gcc
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       include:
+  #         - IMAGE_NAME: arm-none-eabi-clang
+  #           IMAGE_TAG: 14-22.04
+  #           PARENT_ARTIFACT: arm-none-eabi-gcc-11-22.04
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: docker build
+  #       uses: kubasejdak-org/docker-build-child-action@main
+  #       with:
+  #         parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
+  #         image: ${{ matrix.IMAGE_NAME }}
+  #         tag: ${{ matrix.IMAGE_TAG }}
+  #         workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
 
-  build-all:
-    runs-on: [self-hosted, heavy-build]
-    needs:
-      - build-gcc
-      - build-clang
-      - build-aarch64-none-linux-gnu-gcc
-      - build-aarch64-none-linux-gnu-clang
-      - build-arm-none-eabi-gcc
-      - build-arm-none-eabi-clang
-    steps:
-      - run: echo "Success"
+  # build-all:
+  #   runs-on: [self-hosted, heavy-build]
+  #   needs:
+  #     - build-gcc
+  #     - build-clang
+  #     - build-aarch64-none-linux-gnu-gcc
+  #     - build-aarch64-none-linux-gnu-clang
+  #     - build-arm-none-eabi-gcc
+  #     - build-arm-none-eabi-clang
+  #   steps:
+  #     - run: echo "Success"
 
-  deploy:
-    runs-on: [self-hosted, heavy-build]
-    if: github.ref_name == 'main'
-    needs:
-      - build-all
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - IMAGE_NAME: gcc
-            IMAGE_TAG: 11-22.04
-          - IMAGE_NAME: clang
-            IMAGE_TAG: 14-22.04
-          - IMAGE_NAME: aarch64-none-linux-gnu-gcc
-            IMAGE_TAG: 11-22.04
-          - IMAGE_NAME: aarch64-none-linux-gnu-clang
-            IMAGE_TAG: 14-22.04
-          - IMAGE_NAME: arm-none-eabi-gcc
-            IMAGE_TAG: 11-22.04
-          - IMAGE_NAME: arm-none-eabi-clang
-            IMAGE_TAG: 14-22.04
-    steps:
-      - name: docker push
-        uses: kubasejdak-org/docker-push-action@main
-        with:
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          image: ${{ matrix.IMAGE_NAME }}
-          tag: ${{ matrix.IMAGE_TAG }}
+  # deploy:
+  #   runs-on: [self-hosted, heavy-build]
+  #   if: github.ref_name == 'main'
+  #   needs:
+  #     - build-all
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       include:
+  #         - IMAGE_NAME: gcc
+  #           IMAGE_TAG: 11-22.04
+  #         - IMAGE_NAME: clang
+  #           IMAGE_TAG: 14-22.04
+  #         - IMAGE_NAME: aarch64-none-linux-gnu-gcc
+  #           IMAGE_TAG: 11-22.04
+  #         - IMAGE_NAME: aarch64-none-linux-gnu-clang
+  #           IMAGE_TAG: 14-22.04
+  #         - IMAGE_NAME: arm-none-eabi-gcc
+  #           IMAGE_TAG: 11-22.04
+  #         - IMAGE_NAME: arm-none-eabi-clang
+  #           IMAGE_TAG: 14-22.04
+  #   steps:
+  #     - name: docker push
+  #       uses: kubasejdak-org/docker-push-action@main
+  #       with:
+  #         username: ${{ secrets.DOCKER_USER }}
+  #         password: ${{ secrets.DOCKER_PASSWORD }}
+  #         image: ${{ matrix.IMAGE_NAME }}
+  #         tag: ${{ matrix.IMAGE_TAG }}

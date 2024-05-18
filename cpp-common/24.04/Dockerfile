@@ -1,4 +1,4 @@
-FROM kubasejdak/base:22.04
+FROM kubasejdak/base:24.04
 
 # Settings.
 ARG CMAKE_VERSION=3.29.3
