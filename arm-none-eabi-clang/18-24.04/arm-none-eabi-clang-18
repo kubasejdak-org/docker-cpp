@@ -1,0 +1,26 @@
+BAREMETAL_ARM_TOOLCHAIN_PATH=/opt/toolchains/arm-gnu-toolchain-13.2.Rel1-x86_64-arm-none-eabi
+
+[settings]
+os=Linux
+os_build=Linux
+arch=armv7_32
+arch_build=x86_64
+compiler=clang
+compiler.version=18
+compiler.libcxx=libstdc++11
+build_type=Release
+
+[env]
+CFLAGS="-target arm-none-eabi --gcc-toolchain=$BAREMETAL_ARM_TOOLCHAIN_PATH --sysroot=$BAREMETAL_ARM_TOOLCHAIN_PATH/arm-none-eabi/lib"
+CXXFLAGS="-target arm-none-eabi --gcc-toolchain=$BAREMETAL_ARM_TOOLCHAIN_PATH --sysroot=$BAREMETAL_ARM_TOOLCHAIN_PATH/arm-none-eabi/lib"
+LDFLAGS="-fuse-ld=$BAREMETAL_ARM_TOOLCHAIN_PATH/bin/arm-none-eabi-ld"
+
+AR=llvm-ar-18
+AS=clang-18
+CC=clang-18
+CXX=clang++-18
+LD=lld-18
+OBJCOPY=llvm-objcopy-18
+RANLIB=llvm-ranlib-18
+SIZE=llvm-size-18
+STRIP=llvm-strip-18

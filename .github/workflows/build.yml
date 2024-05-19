@@ -1,6 +1,10 @@
 name: Build Docker images for C++
 
-on: [push]
+on:
+  push:
+  schedule:
+    - cron: "0 8 * * SAT"
+  workflow_dispatch:
 
 jobs:
   build-cpp-common:
@@ -154,6 +158,9 @@ jobs:
           - IMAGE_NAME: arm-none-eabi-clang
             IMAGE_TAG: 14-22.04
             PARENT_ARTIFACT: arm-none-eabi-gcc-11-22.04
+          - IMAGE_NAME: arm-none-eabi-clang
+            IMAGE_TAG: 18-24.04
+            PARENT_ARTIFACT: arm-none-eabi-gcc-13-24.04
     steps:
       - uses: actions/checkout@v4
       - name: docker build
@@ -207,6 +214,8 @@ jobs:
             IMAGE_TAG: 13-24.04
           - IMAGE_NAME: arm-none-eabi-clang
             IMAGE_TAG: 14-22.04
+          - IMAGE_NAME: arm-none-eabi-clang
+            IMAGE_TAG: 18-24.04
     steps:
       - name: docker push
         uses: kubasejdak-org/docker-push-action@main
