@@ -1,0 +1,25 @@
+{% import "gcc.jinja" as gcc %}
+
+[settings]
+arch=x86_64
+build_type=Release
+compiler=clang
+compiler.cppstd=gnu17
+compiler.libcxx=libstdc++11
+compiler.version=18
+os=Linux
+
+[buildenv]
+CFLAGS="-target arm-none-eabi --gcc-toolchain={{ gcc.path }} --sysroot={{ gcc.path }}/arm-none-eabi/lib"
+CXXFLAGS="-target arm-none-eabi --gcc-toolchain={{ gcc.path }} --sysroot={{ gcc.path }}/arm-none-eabi/lib"
+LDFLAGS="-fuse-ld={{ gcc.path }}/bin/arm-none-eabi-ld"
+
+AR=llvm-ar-18
+AS=clang-18
+CC=clang-18
+CXX=clang++-18
+LD=lld-18
+OBJCOPY=llvm-objcopy-18
+RANLIB=llvm-ranlib-18
+SIZE=llvm-size-18
+STRIP=llvm-strip-18
