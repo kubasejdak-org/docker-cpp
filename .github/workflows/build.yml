@@ -130,6 +130,9 @@ jobs:
           - IMAGE_NAME: arm-none-eabi-gcc
             IMAGE_TAG: 11-22.04
             PARENT_ARTIFACT: cpp-common-22.04
+          - IMAGE_NAME: arm-none-eabi-gcc
+            IMAGE_TAG: 13-24.04
+            PARENT_ARTIFACT: cpp-common-24.04
     steps:
       - uses: actions/checkout@v4
       - name: docker build
@@ -200,6 +203,8 @@ jobs:
             IMAGE_TAG: 18-24.04
           - IMAGE_NAME: arm-none-eabi-gcc
             IMAGE_TAG: 11-22.04
+          - IMAGE_NAME: arm-none-eabi-gcc
+            IMAGE_TAG: 13-24.04
           - IMAGE_NAME: arm-none-eabi-clang
             IMAGE_TAG: 14-22.04
     steps:

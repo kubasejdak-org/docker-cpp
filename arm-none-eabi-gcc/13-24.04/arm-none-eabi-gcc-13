@@ -1,0 +1,25 @@
+BAREMETAL_ARM_TOOLCHAIN_PATH=/opt/toolchains/arm-gnu-toolchain-13.2.Rel1-x86_64-arm-none-eabi
+
+[settings]
+os=baremetal
+os_build=Linux
+arch=armv7
+arch_build=x86_64
+compiler=gcc
+compiler.version=13
+compiler.libcxx=libstdc++11
+build_type=Release
+
+[env]
+CFLAGS="-mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -mthumb --specs=nosys.specs"
+CXXFLAGS="-mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -mthumb --specs=nosys.specs"
+
+AR=$BAREMETAL_ARM_TOOLCHAIN_PATH/bin/arm-none-eabi-ar
+AS=$BAREMETAL_ARM_TOOLCHAIN_PATH/bin/arm-none-eabi-gcc
+CC=$BAREMETAL_ARM_TOOLCHAIN_PATH/bin/arm-none-eabi-gcc
+CXX=$BAREMETAL_ARM_TOOLCHAIN_PATH/bin/arm-none-eabi-g++
+LD=$BAREMETAL_ARM_TOOLCHAIN_PATH/bin/arm-none-eabi-ld
+OBJCOPY=$BAREMETAL_ARM_TOOLCHAIN_PATH/bin/arm-none-eabi-objcopy
+RANLIB=$BAREMETAL_ARM_TOOLCHAIN_PATH/bin/arm-none-eabi-ranlib
+SIZE=$BAREMETAL_ARM_TOOLCHAIN_PATH/bin/arm-none-eabi-size
+STRIP=$BAREMETAL_ARM_TOOLCHAIN_PATH/bin/arm-none-eabi-strip
