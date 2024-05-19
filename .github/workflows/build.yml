@@ -106,6 +106,9 @@ jobs:
           - IMAGE_NAME: aarch64-none-linux-gnu-clang
             IMAGE_TAG: 14-22.04
             PARENT_ARTIFACT: aarch64-none-linux-gnu-gcc-11-22.04
+          - IMAGE_NAME: aarch64-none-linux-gnu-clang
+            IMAGE_TAG: 18-24.04
+            PARENT_ARTIFACT: aarch64-none-linux-gnu-gcc-13-24.04
     steps:
       - uses: actions/checkout@v4
       - name: docker build
@@ -193,6 +196,8 @@ jobs:
             IMAGE_TAG: 13-24.04
           - IMAGE_NAME: aarch64-none-linux-gnu-clang
             IMAGE_TAG: 14-22.04
+          - IMAGE_NAME: aarch64-none-linux-gnu-clang
+            IMAGE_TAG: 18-24.04
           - IMAGE_NAME: arm-none-eabi-gcc
             IMAGE_TAG: 11-22.04
           - IMAGE_NAME: arm-none-eabi-clang
