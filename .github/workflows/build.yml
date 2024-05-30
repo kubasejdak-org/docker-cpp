@@ -10,6 +10,7 @@ jobs:
   build-cpp-common:
     name: build cpp-common
     runs-on: [self-hosted, heavy-build]
+    needs: []
     strategy:
       fail-fast: false
       matrix:
@@ -171,7 +172,7 @@ jobs:
           tag: ${{ matrix.IMAGE_TAG }}
           workdir: ${{ matrix.IMAGE_NAME }}/${{ matrix.IMAGE_TAG }}
 
-  build-all:
+  check-all:
     runs-on: [self-hosted, heavy-build]
     needs:
       - build-gcc
@@ -187,7 +188,7 @@ jobs:
     runs-on: [self-hosted, heavy-build]
     if: github.ref_name == 'main'
     needs:
-      - build-all
+      - check-all
     strategy:
       fail-fast: false
       matrix:
