@@ -13,7 +13,8 @@ ENV PIPX_BIN_DIR=${PIPX_HOME}/bin
 ENV PATH=${PIPX_BIN_DIR}:${PATH}
 
 # Install common tools.
-RUN sudo apt install -y wget build-essential make pkg-config bison flex file bash-completion && \
+RUN sudo apt update && \
+    sudo apt install -y wget build-essential make pkg-config bison flex file bash-completion && \
     \
     # Download CMake.
     wget --no-check-certificate ${CMAKE_URL} && \
