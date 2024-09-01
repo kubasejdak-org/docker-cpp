@@ -1,8 +1,8 @@
 FROM kubasejdak/cpp-common:24.04
 
 # Settings.
-ARG GCC_URL=https://developer.arm.com/-/media/Files/downloads/gnu/13.2.rel1/binrel/arm-gnu-toolchain-13.2.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-ARG GCC_DIR=arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-linux-gnu
+ARG GCC_URL=https://developer.arm.com/-/media/Files/downloads/gnu/13.3.rel1/binrel/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+ARG GCC_DIR=arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-linux-gnu
 ARG CONAN_TARGET_PROFILE=aarch64-none-linux-gnu-gcc-13
 
 # Add conan profile.

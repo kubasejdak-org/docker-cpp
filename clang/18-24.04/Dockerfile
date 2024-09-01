@@ -12,7 +12,7 @@ RUN ln -sf ${CONAN_USER_HOME}/.conan/profiles/${CONAN_TARGET_PROFILE} ${CONAN_US
     \
     # Install clang, clang-tools, clang-format, clang-tidy and llvm.
     sudo apt update && \
-    sudo apt install -y software-properties-common gnupg lsb-release && \
+    sudo apt install -y software-properties-common gnupg && \
     wget https://apt.llvm.org/llvm.sh && \
     chmod +x llvm.sh && \
     sudo ./llvm.sh ${CLANG_VERSION} && \
@@ -26,7 +26,7 @@ RUN ln -sf ${CONAN_USER_HOME}/.conan/profiles/${CONAN_TARGET_PROFILE} ${CONAN_US
     rm llvm.sh && \
     \
     # Cleanup image.
-    sudo apt remove -y software-properties-common gnupg lsb-release && \
+    sudo apt remove -y software-properties-common gnupg && \
     sudo apt autoremove -y && \
     sudo apt clean && \
     sudo rm -rf /var/lib/apt/lists/*
