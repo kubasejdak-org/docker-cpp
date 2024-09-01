@@ -3,7 +3,7 @@ BAREMETAL_ARM_TOOLCHAIN_PATH=/opt/toolchains/arm-gnu-toolchain-11.3.rel1-x86_64-
 [settings]
 os=Linux
 os_build=Linux
-arch=armv7_32
+arch=armv7
 arch_build=x86_64
 compiler=clang
 compiler.version=14
