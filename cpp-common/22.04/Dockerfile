@@ -2,12 +2,11 @@ FROM kubasejdak/base:22.04
 
 # Settings.
 ARG CMAKE_VERSION=3.30.0
-ARG CONAN_VERSION=1.64.1
+ARG CONAN_VERSION=2.7.0
 ARG CMAKE_URL=https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.sh
 ARG LIBFAKETIME_URL=https://github.com/wolfcw/libfaketime.git
 
 ENV CONAN_HOME=/opt/conan/.conan2
-ENV CONAN_USER_HOME=/opt/conan
 ENV PIPX_HOME=/opt/pipx
 ENV PIPX_BIN_DIR=${PIPX_HOME}/bin
 ENV PATH=${PIPX_BIN_DIR}:${PATH}
@@ -29,19 +28,11 @@ RUN sudo apt update && \
     sudo -H pip install pipx && \
     \
     # Install conan.
-    sudo mkdir -p -m 777 ${CONAN_USER_HOME} && \
-    pipx install conan && \
-    conan profile detect && \
-    pipx uninstall conan && \
+    sudo mkdir -p -m 777 ${CONAN_HOME} && \
     pipx install conan==${CONAN_VERSION} && \
-    conan profile new default --detect && \
-    conan profile update settings.compiler.libcxx=libstdc++11 default && \
-    conan profile update env.CC=gcc default && \
-    conan profile update env.CXX=g++ default && \
+    conan profile detect && \
     sudo ln -s $(which conan) /usr/bin/conan && \
-    sudo chmod -R 777 ${CONAN_USER_HOME} && \
-    ln -s ${CONAN_USER_HOME}/.conan ${HOME}/.conan && \
-    ln -s ${CONAN_HOME} ${HOME}/.conan2 && \
+    ln -s ${CONAN_HOME} ${HOME} && \
     \
     # Install libfaketime.
     git clone ${LIBFAKETIME_URL} && \

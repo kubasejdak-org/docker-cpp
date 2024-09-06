@@ -5,10 +5,8 @@ ARG CLANG_VERSION=18
 ARG CONAN_TARGET_PROFILE=arm-none-eabi-clang-${CLANG_VERSION}
 
 # Add conan profile.
-COPY ${CONAN_TARGET_PROFILE} ${CONAN_USER_HOME}/.conan/profiles
-COPY ${CONAN_TARGET_PROFILE}_2 ${CONAN_USER_HOME}/.conan2/profiles/${CONAN_TARGET_PROFILE}
-RUN ln -sf ${CONAN_USER_HOME}/.conan/profiles/${CONAN_TARGET_PROFILE} ${CONAN_USER_HOME}/.conan/profiles/target-default && \
-    ln -sf ${CONAN_USER_HOME}/.conan2/profiles/${CONAN_TARGET_PROFILE} ${CONAN_USER_HOME}/.conan2/profiles/target-default && \
+COPY ${CONAN_TARGET_PROFILE} ${CONAN_HOME}/profiles
+RUN ln -sf ${CONAN_HOME}/profiles/${CONAN_TARGET_PROFILE} ${CONAN_HOME}/profiles/target-default && \
     \
     # Install clang, clang-tools, clang-format, clang-tidy and llvm.
     sudo apt update && \

@@ -5,10 +5,8 @@ ARG GCC_VERSION=13
 ARG CONAN_TARGET_PROFILE=gcc-${GCC_VERSION}
 
 # Add conan profile.
-COPY ${CONAN_TARGET_PROFILE} ${CONAN_USER_HOME}/.conan/profiles
-COPY ${CONAN_TARGET_PROFILE}_2 ${CONAN_USER_HOME}/.conan2/profiles/${CONAN_TARGET_PROFILE}
-RUN ln -sf ${CONAN_USER_HOME}/.conan/profiles/${CONAN_TARGET_PROFILE} ${CONAN_USER_HOME}/.conan/profiles/target-default && \
-    ln -sf ${CONAN_USER_HOME}/.conan2/profiles/${CONAN_TARGET_PROFILE} ${CONAN_USER_HOME}/.conan2/profiles/target-default && \
+COPY ${CONAN_TARGET_PROFILE} ${CONAN_HOME}/profiles
+RUN ln -sf ${CONAN_HOME}/profiles/${CONAN_TARGET_PROFILE} ${CONAN_HOME}/profiles/target-default && \
     \
     # Add repository with latest compilers.
     sudo apt install -y software-properties-common gnupg && \
