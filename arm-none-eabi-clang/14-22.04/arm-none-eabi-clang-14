@@ -1,20 +1,20 @@
-BAREMETAL_ARM_TOOLCHAIN_PATH=/opt/toolchains/arm-gnu-toolchain-11.3.rel1-x86_64-arm-none-eabi
+{% import "gcc.jinja" as gcc %}
 
 [settings]
-os=Linux
-os_build=Linux
 arch=armv7
-arch_build=x86_64
-compiler=clang
-compiler.version=14
-compiler.libcxx=libstdc++11
 build_type=Release
+compiler=clang
+compiler.cppstd=gnu14
+compiler.libcxx=libstdc++11
+compiler.version=14
+os=Linux
 
-[env]
-CFLAGS="-target arm-none-eabi --gcc-toolchain=$BAREMETAL_ARM_TOOLCHAIN_PATH --sysroot=$BAREMETAL_ARM_TOOLCHAIN_PATH/arm-none-eabi/lib"
-CXXFLAGS="-target arm-none-eabi --gcc-toolchain=$BAREMETAL_ARM_TOOLCHAIN_PATH --sysroot=$BAREMETAL_ARM_TOOLCHAIN_PATH/arm-none-eabi/lib"
-LDFLAGS="-fuse-ld=$BAREMETAL_ARM_TOOLCHAIN_PATH/bin/arm-none-eabi-ld"
+[conf]
+tools.build:cflags=["-target arm-none-eabi", "--gcc-toolchain={{ gcc.path }}", "--sysroot={{ gcc.path }}/arm-none-eabi/lib"]
+tools.build:cxxflags=["-target arm-none-eabi", "--gcc-toolchain={{ gcc.path }}", "--sysroot={{ gcc.path }}/arm-none-eabi/lib"]
+tools.build:exelinkflags=["-fuse-ld={{ gcc.path }}/bin/arm-none-eabi-ld"]
 
+[buildenv]
 AR=llvm-ar-14
 AS=clang-14
 CC=clang-14

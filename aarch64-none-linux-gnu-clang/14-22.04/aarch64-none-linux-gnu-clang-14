@@ -1,20 +1,20 @@
-LINUX_ARM_TOOLCHAIN_PATH=/opt/toolchains/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu
+{% import "gcc.jinja" as gcc %}
 
 [settings]
-os=Linux
-os_build=Linux
 arch=armv8
-arch_build=x86_64
-compiler=clang
-compiler.version=14
-compiler.libcxx=libstdc++11
 build_type=Release
+compiler=clang
+compiler.cppstd=gnu14
+compiler.libcxx=libstdc++11
+compiler.version=14
+os=Linux
 
-[env]
-CFLAGS="-target aarch64-none-linux-gnu --gcc-toolchain=$LINUX_ARM_TOOLCHAIN_PATH --sysroot=$LINUX_ARM_TOOLCHAIN_PATH/aarch64-none-linux-gnu/libc"
-CXXFLAGS="-target aarch64-none-linux-gnu --gcc-toolchain=$LINUX_ARM_TOOLCHAIN_PATH --sysroot=$LINUX_ARM_TOOLCHAIN_PATH/aarch64-none-linux-gnu/libc"
-LDFLAGS="-fuse-ld=$LINUX_ARM_TOOLCHAIN_PATH/bin/aarch64-none-linux-gnu-ld"
+[conf]
+tools.build:cflags=["-target aarch64-none-linux-gnu", "--gcc-toolchain={{ gcc.path }}", "--sysroot={{ gcc.path }}/aarch64-none-linux-gnu/libc"]
+tools.build:cxxflags=["-target aarch64-none-linux-gnu", "--gcc-toolchain={{ gcc.path }}", "--sysroot={{ gcc.path }}/aarch64-none-linux-gnu/libc"]
+tools.build:exelinkflags=["-fuse-ld={{ gcc.path }}/bin/aarch64-none-linux-gnu-ld"]
 
+[buildenv]
 AR=llvm-ar-14
 AS=clang-14
 CC=clang-14
