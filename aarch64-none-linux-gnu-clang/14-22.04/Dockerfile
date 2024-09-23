@@ -18,6 +18,7 @@ RUN ln -sf ${CONAN_HOME}/profiles/${CONAN_TARGET_PROFILE} ${CONAN_HOME}/profiles
     clang-tools-${CLANG_VERSION} \
     clang-format-${CLANG_VERSION} \
     clang-tidy-${CLANG_VERSION} \
+    libclang-${CLANG_VERSION}-dev \
     llvm-${CLANG_VERSION} \
     lld-${CLANG_VERSION} \
     lldb-${CLANG_VERSION} && \
