@@ -1,8 +1,9 @@
 FROM kubasejdak/base:24.04
 
 # Settings.
-ARG CMAKE_VERSION=3.30.5
-ARG CONAN_VERSION=2.8.0
+ARG CLANG_FORMAT_VERSION=18
+ARG CMAKE_VERSION=3.31.0
+ARG CONAN_VERSION=2.9.2
 ARG CMAKE_URL=https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.sh
 ARG LIBFAKETIME_URL=https://github.com/wolfcw/libfaketime.git
 
@@ -21,7 +22,12 @@ RUN sudo apt update && \
     rm $(basename ${CMAKE_URL}) && \
     \
     # Install clang-format.
+    sudo apt install -y software-properties-common gnupg && \
+    wget https://apt.llvm.org/llvm.sh && \
+    chmod +x llvm.sh && \
+    sudo ./llvm.sh ${CLANG_FORMAT_VERSION} && \
     sudo apt install -y clang-format && \
+    sudo apt remove -y software-properties-common gnupg && \
     \
     # Install python3 and pipx.
     sudo apt install -y python3 python3-pip python3-venv python-is-python3 && \
