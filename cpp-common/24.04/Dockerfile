@@ -35,6 +35,7 @@ RUN sudo apt update && \
     sudo mkdir -p -m 777 ${UV_INSTALL_DIR} && \
     sudo mkdir -p -m 777 ${UV_TOOL_BIN_DIR} && \
     wget -qO- https://astral.sh/uv/install.sh | sh && \
+    source ${UV_INSTALL_DIR}/env.sh && \
     \
     # Install conan.
     sudo mkdir -p -m 777 ${CONAN_HOME} && \
