@@ -8,11 +8,9 @@ ARG CONAN_TARGET_PROFILE=gcc-${GCC_VERSION}
 COPY ${CONAN_TARGET_PROFILE} ${CONAN_HOME}/profiles
 RUN ln -sf ${CONAN_HOME}/profiles/${CONAN_TARGET_PROFILE} ${CONAN_HOME}/profiles/target-default && \
     \
-    # Install gcc, g++ and lcov.
+    # Install gcc, g++, lcov and gcovr.
     sudo apt install -y gcc gcc-${GCC_VERSION} g++ g++-${GCC_VERSION} gdb lcov && \
-    \
-    # Install gcovr.
-    pipx install gcovr && \
+    uv tool install gcovr && \
     \
     # Cleanup image.
     sudo apt autoremove -y && \
