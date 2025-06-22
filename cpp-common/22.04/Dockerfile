@@ -10,7 +10,7 @@ ARG LIBFAKETIME_URL=https://github.com/wolfcw/libfaketime.git
 ENV CONAN_HOME=/opt/conan/.conan2
 ENV UV_INSTALL_DIR=/opt/uv
 ENV UV_TOOL_BIN_DIR=${UV_INSTALL_DIR}/tools/bin
-ENV PATH=${UV_TOOL_BIN_DIR}:${PATH}
+ENV PATH=${UV_INSTALL_DIR}:${UV_TOOL_BIN_DIR}:${PATH}
 
 # Install common tools.
 RUN sudo apt update && \
@@ -35,7 +35,6 @@ RUN sudo apt update && \
     sudo mkdir -p -m 777 ${UV_INSTALL_DIR} && \
     sudo mkdir -p -m 777 ${UV_TOOL_BIN_DIR} && \
     wget -qO- https://astral.sh/uv/install.sh | sh && \
-    source ${UV_INSTALL_DIR}/env.sh && \
     \
     # Install conan.
     sudo mkdir -p -m 777 ${CONAN_HOME} && \
