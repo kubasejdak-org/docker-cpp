@@ -10,7 +10,7 @@ RUN ln -sf ${CONAN_HOME}/profiles/${CONAN_TARGET_PROFILE} ${CONAN_HOME}/profiles
     \
     # Install gcc, g++, lcov and gcovr.
     sudo apt install -y gcc gcc-${GCC_VERSION} g++ g++-${GCC_VERSION} gdb lcov && \
-    uv tool install gcovr && \
+    sudo uv tool install gcovr && \
     \
     # Cleanup image.
     sudo apt autoremove -y && \
