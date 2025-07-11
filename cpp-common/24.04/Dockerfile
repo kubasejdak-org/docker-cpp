@@ -3,7 +3,7 @@ FROM kubasejdak/base:24.04
 # Settings.
 ARG CLANG_FORMAT_VERSION=18
 ARG CMAKE_VERSION=4.0.3
-ARG CONAN_VERSION=2.17.0
+ARG CONAN_VERSION=2.18.1
 ARG CMAKE_URL=https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.sh
 ARG LIBFAKETIME_URL=https://github.com/wolfcw/libfaketime.git
 
