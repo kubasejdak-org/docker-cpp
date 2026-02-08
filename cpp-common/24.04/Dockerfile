@@ -28,6 +28,7 @@ RUN sudo apt update && \
     sudo ./llvm.sh ${CLANG_FORMAT_VERSION} && \
     sudo apt install -y clang-format && \
     sudo apt remove -y software-properties-common gnupg && \
+    rm ./llvm.sh && \
     \
     # Install python3 and uv.
     sudo apt install -y python3 python3-pip python3-venv python-is-python3 && \
