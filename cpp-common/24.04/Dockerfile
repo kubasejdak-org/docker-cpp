@@ -3,7 +3,7 @@ FROM kubasejdak/base:24.04
 # Settings.
 ARG CLANG_FORMAT_VERSION=18
 ARG CMAKE_VERSION=4.2.3
-ARG CONAN_VERSION=2.25.1
+ARG CONAN_VERSION=2.26.1
 ARG CMAKE_URL=https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.sh
 ARG LIBFAKETIME_URL=https://github.com/wolfcw/libfaketime.git
 
@@ -21,12 +21,12 @@ RUN sudo apt update && \
     sudo sh $(basename ${CMAKE_URL}) --skip-license --prefix=/usr && \
     rm $(basename ${CMAKE_URL}) && \
     \
-    # Install clang-format.
+    # Install clang-format and clangd.
     sudo apt install -y software-properties-common gnupg && \
     wget https://apt.llvm.org/llvm.sh && \
     chmod +x llvm.sh && \
     sudo ./llvm.sh ${CLANG_FORMAT_VERSION} && \
-    sudo apt install -y clang-format && \
+    sudo apt install -y clang-format clangd && \
     sudo apt remove -y software-properties-common gnupg && \
     rm ./llvm.sh && \
     \
