@@ -20,7 +20,7 @@ jobs:
           - IMAGE_NAME: cpp-common
             IMAGE_TAG: 24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: docker build
         uses: kubasejdak-org/docker-build-base-action@main
         with:
@@ -43,7 +43,7 @@ jobs:
             IMAGE_TAG: 13-24.04
             PARENT_ARTIFACT: cpp-common-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: docker build
         uses: kubasejdak-org/docker-build-child-action@main
         with:
@@ -67,7 +67,7 @@ jobs:
             IMAGE_TAG: 18-24.04
             PARENT_ARTIFACT: cpp-common-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: docker build
         uses: kubasejdak-org/docker-build-child-action@main
         with:
@@ -91,7 +91,7 @@ jobs:
             IMAGE_TAG: 13-24.04
             PARENT_ARTIFACT: cpp-common-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: docker build
         uses: kubasejdak-org/docker-build-child-action@main
         with:
@@ -115,7 +115,7 @@ jobs:
             IMAGE_TAG: 18-24.04
             PARENT_ARTIFACT: aarch64-none-linux-gnu-gcc-13-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: docker build
         uses: kubasejdak-org/docker-build-child-action@main
         with:
@@ -139,7 +139,7 @@ jobs:
             IMAGE_TAG: 13-24.04
             PARENT_ARTIFACT: cpp-common-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: docker build
         uses: kubasejdak-org/docker-build-child-action@main
         with:
@@ -163,7 +163,7 @@ jobs:
             IMAGE_TAG: 18-24.04
             PARENT_ARTIFACT: arm-none-eabi-gcc-13-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: docker build
         uses: kubasejdak-org/docker-build-child-action@main
         with:
