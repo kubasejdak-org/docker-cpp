@@ -204,7 +204,8 @@ jobs:
       - build-arm-none-eabi-gcc
       - build-arm-none-eabi-clang
     steps:
-      - run: echo '${{ toJSON(needs.*.result) }}' | grep -qvE '"(failure|cancelled|skipped)"'
+      - run: |
+          ! echo '${{ toJSON(needs.*.result) }}' | grep -qE '"(failure|cancelled|skipped)"'
 
   deploy:
     runs-on: [self-hosted, heavy-build]
