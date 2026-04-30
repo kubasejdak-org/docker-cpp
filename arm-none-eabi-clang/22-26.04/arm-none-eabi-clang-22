@@ -1,0 +1,26 @@
+{% import "gcc.jinja" as gcc %}
+
+[settings]
+arch=armv7
+build_type=Release
+compiler=clang
+compiler.cppstd=gnu17
+compiler.libcxx=libstdc++11
+compiler.version=22
+os=Linux
+
+[conf]
+tools.build:cflags=["-target arm-none-eabi", "--gcc-toolchain={{ gcc.path }}", "--sysroot={{ gcc.path }}/arm-none-eabi/lib"]
+tools.build:cxxflags=["-target arm-none-eabi", "--gcc-toolchain={{ gcc.path }}", "--sysroot={{ gcc.path }}/arm-none-eabi/lib"]
+tools.build:exelinkflags=["-fuse-ld={{ gcc.path }}/bin/arm-none-eabi-ld"]
+
+[buildenv]
+AR=llvm-ar-22
+AS=clang-22
+CC=clang-22
+CXX=clang++-22
+LD=lld-22
+OBJCOPY=llvm-objcopy-22
+RANLIB=llvm-ranlib-22
+SIZE=llvm-size-22
+STRIP=llvm-strip-22
