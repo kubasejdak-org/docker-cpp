@@ -194,7 +194,9 @@ jobs:
 
   check-all:
     runs-on: [self-hosted, heavy-build]
+    if: always()
     needs:
+      - build-cpp-common
       - build-gcc
       - build-clang
       - build-aarch64-none-linux-gnu-gcc
@@ -202,7 +204,7 @@ jobs:
       - build-arm-none-eabi-gcc
       - build-arm-none-eabi-clang
     steps:
-      - run: echo "Success"
+      - run: echo '${{ toJSON(needs.*.result) }}' | grep -qvE '"(failure|cancelled|skipped)"'
 
   deploy:
     runs-on: [self-hosted, heavy-build]
