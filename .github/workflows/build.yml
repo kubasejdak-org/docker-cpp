@@ -19,8 +19,8 @@ jobs:
             IMAGE_TAG: 22.04
           - IMAGE_NAME: cpp-common
             IMAGE_TAG: 24.04
-          # - IMAGE_NAME: cpp-common
-          #   IMAGE_TAG: 26.04
+          - IMAGE_NAME: cpp-common
+            IMAGE_TAG: 26.04
     steps:
       - uses: actions/checkout@v6
       - name: docker build
@@ -44,9 +44,9 @@ jobs:
           - IMAGE_NAME: gcc
             IMAGE_TAG: 13-24.04
             PARENT_ARTIFACT: cpp-common-24.04
-          # - IMAGE_NAME: gcc
-          #   IMAGE_TAG: 15-26.04
-          #   PARENT_ARTIFACT: cpp-common-26.04
+          - IMAGE_NAME: gcc
+            IMAGE_TAG: 15-26.04
+            PARENT_ARTIFACT: cpp-common-26.04
     steps:
       - uses: actions/checkout@v6
       - name: docker build
@@ -71,9 +71,9 @@ jobs:
           - IMAGE_NAME: clang
             IMAGE_TAG: 18-24.04
             PARENT_ARTIFACT: cpp-common-24.04
-          # - IMAGE_NAME: clang
-          #   IMAGE_TAG: 22-26.04
-          #   PARENT_ARTIFACT: cpp-common-26.04
+          - IMAGE_NAME: clang
+            IMAGE_TAG: 22-26.04
+            PARENT_ARTIFACT: cpp-common-26.04
     steps:
       - uses: actions/checkout@v6
       - name: docker build
@@ -98,9 +98,9 @@ jobs:
           - IMAGE_NAME: aarch64-none-linux-gnu-gcc
             IMAGE_TAG: 13-24.04
             PARENT_ARTIFACT: cpp-common-24.04
-          # - IMAGE_NAME: aarch64-none-linux-gnu-gcc
-          #   IMAGE_TAG: 15-26.04
-          #   PARENT_ARTIFACT: cpp-common-26.04
+          - IMAGE_NAME: aarch64-none-linux-gnu-gcc
+            IMAGE_TAG: 15-26.04
+            PARENT_ARTIFACT: cpp-common-26.04
     steps:
       - uses: actions/checkout@v6
       - name: docker build
@@ -125,9 +125,9 @@ jobs:
           - IMAGE_NAME: aarch64-none-linux-gnu-clang
             IMAGE_TAG: 18-24.04
             PARENT_ARTIFACT: aarch64-none-linux-gnu-gcc-13-24.04
-          # - IMAGE_NAME: aarch64-none-linux-gnu-clang
-          #   IMAGE_TAG: 22-26.04
-          #   PARENT_ARTIFACT: aarch64-none-linux-gnu-gcc-15-26.04
+          - IMAGE_NAME: aarch64-none-linux-gnu-clang
+            IMAGE_TAG: 22-26.04
+            PARENT_ARTIFACT: aarch64-none-linux-gnu-gcc-15-26.04
     steps:
       - uses: actions/checkout@v6
       - name: docker build
@@ -152,9 +152,9 @@ jobs:
           - IMAGE_NAME: arm-none-eabi-gcc
             IMAGE_TAG: 13-24.04
             PARENT_ARTIFACT: cpp-common-24.04
-          # - IMAGE_NAME: arm-none-eabi-gcc
-          #   IMAGE_TAG: 15-26.04
-          #   PARENT_ARTIFACT: cpp-common-26.04
+          - IMAGE_NAME: arm-none-eabi-gcc
+            IMAGE_TAG: 15-26.04
+            PARENT_ARTIFACT: cpp-common-26.04
     steps:
       - uses: actions/checkout@v6
       - name: docker build
@@ -179,9 +179,9 @@ jobs:
           - IMAGE_NAME: arm-none-eabi-clang
             IMAGE_TAG: 18-24.04
             PARENT_ARTIFACT: arm-none-eabi-gcc-13-24.04
-          # - IMAGE_NAME: arm-none-eabi-clang
-          #   IMAGE_TAG: 22-26.04
-          #   PARENT_ARTIFACT: arm-none-eabi-gcc-15-26.04
+          - IMAGE_NAME: arm-none-eabi-clang
+            IMAGE_TAG: 22-26.04
+            PARENT_ARTIFACT: arm-none-eabi-gcc-15-26.04
     steps:
       - uses: actions/checkout@v6
       - name: docker build
@@ -221,38 +221,38 @@ jobs:
             IMAGE_TAG: 11-22.04
           - IMAGE_NAME: gcc
             IMAGE_TAG: 13-24.04
-          # - IMAGE_NAME: gcc
-          #   IMAGE_TAG: 15-26.04
+          - IMAGE_NAME: gcc
+            IMAGE_TAG: 15-26.04
           - IMAGE_NAME: clang
             IMAGE_TAG: 14-22.04
           - IMAGE_NAME: clang
             IMAGE_TAG: 18-24.04
-          # - IMAGE_NAME: clang
-          #   IMAGE_TAG: 22-26.04
+          - IMAGE_NAME: clang
+            IMAGE_TAG: 22-26.04
           - IMAGE_NAME: aarch64-none-linux-gnu-gcc
             IMAGE_TAG: 11-22.04
           - IMAGE_NAME: aarch64-none-linux-gnu-gcc
             IMAGE_TAG: 13-24.04
-          # - IMAGE_NAME: aarch64-none-linux-gnu-gcc
-          #   IMAGE_TAG: 15-26.04
+          - IMAGE_NAME: aarch64-none-linux-gnu-gcc
+            IMAGE_TAG: 15-26.04
           - IMAGE_NAME: aarch64-none-linux-gnu-clang
             IMAGE_TAG: 14-22.04
           - IMAGE_NAME: aarch64-none-linux-gnu-clang
             IMAGE_TAG: 18-24.04
-          # - IMAGE_NAME: aarch64-none-linux-gnu-clang
-          #   IMAGE_TAG: 22-26.04
+          - IMAGE_NAME: aarch64-none-linux-gnu-clang
+            IMAGE_TAG: 22-26.04
           - IMAGE_NAME: arm-none-eabi-gcc
             IMAGE_TAG: 11-22.04
           - IMAGE_NAME: arm-none-eabi-gcc
             IMAGE_TAG: 13-24.04
-          # - IMAGE_NAME: arm-none-eabi-gcc
-          #   IMAGE_TAG: 15-26.04
+          - IMAGE_NAME: arm-none-eabi-gcc
+            IMAGE_TAG: 15-26.04
           - IMAGE_NAME: arm-none-eabi-clang
             IMAGE_TAG: 14-22.04
           - IMAGE_NAME: arm-none-eabi-clang
             IMAGE_TAG: 18-24.04
-          # - IMAGE_NAME: arm-none-eabi-clang
-          #   IMAGE_TAG: 22-26.04
+          - IMAGE_NAME: arm-none-eabi-clang
+            IMAGE_TAG: 22-26.04
     steps:
       - name: docker push
         uses: kubasejdak-org/docker-push-action@main
