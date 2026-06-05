@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: docker build
-        uses: kubasejdak-org/docker-build-base-action@main
+        uses: kubasejdak-org/docker-action/build-base@main
         with:
           image: ${{ matrix.IMAGE_NAME }}
           tag: ${{ matrix.IMAGE_TAG }}
@@ -45,7 +45,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: docker build
-        uses: kubasejdak-org/docker-build-child-action@main
+        uses: kubasejdak-org/docker-action/build-child@main
         with:
           parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
           image: ${{ matrix.IMAGE_NAME }}
@@ -69,7 +69,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: docker build
-        uses: kubasejdak-org/docker-build-child-action@main
+        uses: kubasejdak-org/docker-action/build-child@main
         with:
           parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
           image: ${{ matrix.IMAGE_NAME }}
@@ -93,7 +93,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: docker build
-        uses: kubasejdak-org/docker-build-child-action@main
+        uses: kubasejdak-org/docker-action/build-child@main
         with:
           parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
           image: ${{ matrix.IMAGE_NAME }}
@@ -117,7 +117,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: docker build
-        uses: kubasejdak-org/docker-build-child-action@main
+        uses: kubasejdak-org/docker-action/build-child@main
         with:
           parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
           image: ${{ matrix.IMAGE_NAME }}
@@ -141,7 +141,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: docker build
-        uses: kubasejdak-org/docker-build-child-action@main
+        uses: kubasejdak-org/docker-action/build-child@main
         with:
           parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
           image: ${{ matrix.IMAGE_NAME }}
@@ -165,7 +165,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: docker build
-        uses: kubasejdak-org/docker-build-child-action@main
+        uses: kubasejdak-org/docker-action/build-child@main
         with:
           parentArtifact: ${{ matrix.PARENT_ARTIFACT }}
           image: ${{ matrix.IMAGE_NAME }}
@@ -223,7 +223,7 @@ jobs:
             IMAGE_TAG: 22-26.04
     steps:
       - name: docker push
-        uses: kubasejdak-org/docker-push-action@main
+        uses: kubasejdak-org/docker-action/push@main
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
