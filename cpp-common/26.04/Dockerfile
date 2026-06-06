@@ -26,7 +26,9 @@ RUN sudo apt update && \
     wget https://apt.llvm.org/llvm.sh && \
     chmod +x llvm.sh && \
     sudo ./llvm.sh ${CLANG_FORMAT_VERSION} && \
-    sudo apt install -y clang-format clangd && \
+    sudo apt install -y clang-format-${CLANG_FORMAT_VERSION} clangd-${CLANG_FORMAT_VERSION} && \
+    sudo ln -sf /usr/bin/clang-format-${CLANG_FORMAT_VERSION} /usr/bin/clang-format && \
+    sudo ln -sf /usr/bin/clangd-${CLANG_FORMAT_VERSION} /usr/bin/clangd && \
     sudo apt remove -y software-properties-common gnupg && \
     rm ./llvm.sh && \
     \
