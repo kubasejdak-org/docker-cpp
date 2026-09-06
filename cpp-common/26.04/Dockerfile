@@ -4,8 +4,8 @@ FROM kubasejdak/base:26.04
 ARG CLANG_FORMAT_VERSION=22
 ARG CMAKE_VERSION=4.4.2
 ARG CONAN_VERSION=2.31.2
+ARG LIBFAKETIME_VERSION=10598da8875116b5834ec36e91b22066b8189317
 ARG CMAKE_URL=https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.sh
-ARG LIBFAKETIME_URL=https://github.com/wolfcw/libfaketime.git
 
 ENV CONAN_HOME=/opt/conan/.conan2
 ENV UV_INSTALL_DIR=/usr/local/bin
@@ -48,8 +48,9 @@ RUN sudo apt update && \
     ln -s ${CONAN_HOME} ${HOME} && \
     \
     # Install libfaketime.
-    git clone ${LIBFAKETIME_URL} && \
+    git clone https://github.com/wolfcw/libfaketime.git && \
     cd libfaketime && \
+    git checkout ${LIBFAKETIME_VERSION} && \
     FAKETIME_COMPILE_CFLAGS="-DFAKE_SETTIME" make -j$(nproc) && \
     sudo make install && \
     cd - && \
